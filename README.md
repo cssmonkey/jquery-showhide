@@ -7,7 +7,7 @@ A simple jQuery show/hide plugin. Assumes your toggle HTML flows as follows:
 <li>Nested details element. This should have the CSS class .details</ul>
 </li></ul>
 
-<h2>Current avaiable Options</h2>
+<h2>Current available Options</h2>
 <ul>
 <li>openByDefault - boolean, set to false by default</li>
 <li>toggleLinkText - Comma separated string. Default value is 'Show more, Show less'</li>
