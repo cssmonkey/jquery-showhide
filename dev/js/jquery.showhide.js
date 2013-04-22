@@ -3,9 +3,11 @@
     $.fn.showHide = function (options) {
         var isToggleClass = "isToggle";
 
-        var settings = $.extend({}, $.fn.showHide.defaultOptions, options);
-
-        $.extend(settings, options);
+        // Default Options
+        var settings = {
+            toggleLinkText : 'Show more, Show less',
+			openByDefault : false
+        };
 
         return this.each(function () {
             var toggleComponent = $(this),
@@ -37,12 +39,6 @@
 
         });
 
-    };
-    
-    // Default Options
-    $.fn.showHide.defaultOptions = {
-        toggleLinkText : 'Show more, Show less',
-	openByDefault : false
     };
 
 })(jQuery);
