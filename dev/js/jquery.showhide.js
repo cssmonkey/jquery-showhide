@@ -14,8 +14,7 @@
 				openByDefault = settings.open,
 				toggleLinkText = settings.toggleLinkText.split(","),
 				toggleSummary = $('.summary', toggleComponent), 
-				toggleDetail = $('.detail', toggleComponent),
-				inTransition = false; 
+				toggleDetail = $('.detail', toggleComponent);
 			
 			toggleComponent.addClass('show-hide');
             $('<a class="toggle-link-txt" href="#">' + toggleLinkText[0] + '</a></p></div>').appendTo(toggleSummary);
@@ -23,14 +22,19 @@
 
             $('.toggle-link-txt', toggleComponent).on('click',function (e) {
 				e.preventDefault();
-				
-				if(!inTransition) {
-					inTransition = true
-					toggleComponent.toggleClass('panel-open');
-					toggleDetail.slideToggle(function() {
-						inTransition = false;
+
+					
+				if(!toggleComponent.hasClass('panel-open')) {
+					toggleComponent.addClass('panel-open');
+					toggleDetail.slideDown(function() {
+						$('.toggle-link-txt', toggleComponent).text(toggleLinkText[1]);
 					});
-					$('.toggle-link-txt', toggleComponent).text(toggleElem.hasClass('.panel-open') ? toggleLinkText[1] : toggleLinkText[0]);
+				}
+				else {
+					toggleComponent.removeClass('panel-open');
+					toggleDetail.slideUp(function() {
+						$('.toggle-link-txt', toggleComponent).text(toggleLinkText[0]);
+					});
 				}
                 
             });

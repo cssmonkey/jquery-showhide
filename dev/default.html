@@ -6,43 +6,47 @@
 	<title>Show/Hide Plugin</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.showhide.js"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.showhide.js"></script>
 
 	
-	<link type="text/css">
+	<style>
 		/* the CSS class .show-hide is added dynamically */
 		.show-hide .detail
 		{
 			display:none;
 		}
-	</link>
+		p {
+			margin:0 0 1em;
+		}
+	</style>
 	
-	<!-- Example usage -->
+	
+    <!-- Example usage -->
     <script type="text/javascript">
 	$(function() {
-		$('.toggle-component').showHide();
-	}
+		$('.show-hide').showHide();
+	});
 	</script>
-        
-   
-
         
 
 
 
     </head>
     <body>
+	
+	
     
 	<div class="page-content">
 		<h1>Show/Hide jQuery Plugin</h1>
-		<div class="toggle-component">
+		<div class="show-hide">
 			<div class="summary">
 				<h2>Toggle Component Title</h2>
 				<p>The content with the summary panel is visible on page load. The plugin will automatically add a 'show more' link at the bottom of the summary panel. 
 				Clicking on the 'show more' link will toggle the visibility of the details panel below.</p>
 			</div>
-			<div class="details">
+			<div class="detail">
 				<p>The content within the details panel is hidden on page load.</p>
 				<p>This content really was worth hiding.</p>
 			</div>
