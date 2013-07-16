@@ -5,41 +5,58 @@
 
         // Default Options
         var settings = {
-            toggleLinkText : 'Show more, Show less',
-			openByDefault : false
+            toggleSummary: '.toggleHeading',
+            toggleDetail: '.toggleContent',
+            toggleLinkText: 'Show more, Show less',
+            openByDefault: false
         };
+
+        $.extend(settings, options);
 
         return this.each(function () {
             var toggleComponent = $(this),
-				openByDefault = settings.open,
 				toggleLinkText = settings.toggleLinkText.split(","),
-				toggleSummary = $('.summary', toggleComponent), 
-				toggleDetail = $('.detail', toggleComponent);
-			
-			toggleComponent.addClass('show-hide');
-            $('<a class="toggle-link-txt" href="#">' + toggleLinkText[0] + '</a></p></div>').appendTo(toggleSummary);
+				toggleSummary = $(settings.toggleSummary, toggleComponent),
+				toggleDetail = $(settings.toggleDetail, toggleComponent),
+                openByDefault = settings.open || toggleDetail.is(':visible');
 
+            var init = function () {
+                toggleComponent.addClass('show-hide');
+                var toggletxt = (openByDefault) ? toggleLinkText[1] : toggleLinkText[0];
 
-            $('.toggle-link-txt', toggleComponent).on('click',function (e) {
-				e.preventDefault();
+                $('<a class="toggle-link-txt" href="#">' + toggletxt + '</a></p></div>').appendTo(toggleSummary);
 
-					
-				if(!toggleComponent.hasClass('panel-open')) {
-					toggleComponent.addClass('panel-open');
-					toggleDetail.slideDown(function() {
-						$('.toggle-link-txt', toggleComponent).text(toggleLinkText[1]);
-					});
-				}
-				else {
-					toggleComponent.removeClass('panel-open');
-					toggleDetail.slideUp(function() {
-						$('.toggle-link-txt', toggleComponent).text(toggleLinkText[0]);
-					});
-				}
-                
-            });
-            if (openByDefault)
-                $('.toggle-link-txt', toggleComponent).click();
+                eventHandlers();
+            }
+
+            var eventHandlers = function () {
+                $('.toggle-link-txt', toggleComponent).on('click', function (e) {
+                    e.preventDefault();
+
+                    if (!toggleDetail.is(':visible')) {
+                        bindEvent.open();
+                    }
+                    else {
+                        bindEvent.close();
+                    }
+
+                });
+            }
+
+            var bindEvent = {
+                open: function () {
+                    toggleDetail.slideDown(function () {
+                        $('.toggle-link-txt', toggleComponent).text(toggleLinkText[1]);
+                    });
+                },
+                close: function () {
+                    toggleDetail.slideUp(function () {
+                        $('.toggle-link-txt', toggleComponent).text(toggleLinkText[0]);
+                    });
+                }
+            }
+
+            init();
 
         });
 
