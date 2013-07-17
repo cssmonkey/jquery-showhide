@@ -12,8 +12,8 @@
 
 	
 	<style>
-		/* the CSS class .show-hide is added dynamically */
-		.show-hide .detail
+		/* the CSS class .showHide is added dynamically */
+		.showHide .detail
 		{
 			display:none;
 		}
@@ -26,7 +26,7 @@
     <!-- Example usage -->
     <script type="text/javascript">
 	$(function() {
-		$('.show-hide').showHide();
+		$('.item').showHide();
 	});
 	</script>
         
@@ -38,15 +38,15 @@
 	
 	
     
-	<div class="page-content">
+	<div class="pageContent">
 		<h1>Show/Hide jQuery Plugin</h1>
-		<div class="show-hide">
-			<div class="summary">
+		<div class="item">
+			<div class="toggleHeading">
 				<h2>Toggle Component Title</h2>
 				<p>The content with the summary panel is visible on page load. The plugin will automatically add a 'show more' link at the bottom of the summary panel. 
 				Clicking on the 'show more' link will toggle the visibility of the details panel below.</p>
 			</div>
-			<div class="detail">
+			<div class="toggleContent">
 				<p>The content within the details panel is hidden on page load.</p>
 				<p>This content really was worth hiding.</p>
 			</div>

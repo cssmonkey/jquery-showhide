@@ -8,29 +8,36 @@
             toggleSummary: '.toggleHeading',
             toggleDetail: '.toggleContent',
             toggleLinkText: 'Show more, Show less',
-            openByDefault: false
+            openByDefault: false,
+            clickableSummary: false
         };
 
-        $.extend(settings, options);
+        $.extend(settings, options); 
 
         return this.each(function () {
             var toggleComponent = $(this),
 				toggleLinkText = settings.toggleLinkText.split(","),
 				toggleSummary = $(settings.toggleSummary, toggleComponent),
 				toggleDetail = $(settings.toggleDetail, toggleComponent),
-                openByDefault = settings.open || toggleDetail.is(':visible');
+                openByDefault = settings.open || toggleDetail.is(':visible'),
+                clickableSummary = settings.clickableSummary;
+
+
 
             var init = function () {
                 toggleComponent.addClass('show-hide');
                 var toggletxt = (openByDefault) ? toggleLinkText[1] : toggleLinkText[0];
 
-                $('<a class="toggle-link-txt" href="#">' + toggletxt + '</a></p></div>').appendTo(toggleSummary);
+                $('<div class="toggleTxt"><a class="toggleLink" href="#">' + toggletxt + '</a></div>').appendTo(toggleSummary);
 
                 eventHandlers();
             }
 
             var eventHandlers = function () {
-                $('.toggle-link-txt', toggleComponent).on('click', function (e) {
+                var toggleElement = (clickableSummary) ? toggleSummary : $('.toggleLink', toggleComponent);
+
+
+                toggleElement.on('click', function (e) {
                     e.preventDefault();
 
                     if (!toggleDetail.is(':visible')) {
@@ -45,13 +52,15 @@
 
             var bindEvent = {
                 open: function () {
+                    toggleSummary.addClass('open');
                     toggleDetail.slideDown(function () {
-                        $('.toggle-link-txt', toggleComponent).text(toggleLinkText[1]);
+                        $('.toggleLink', toggleComponent).text(toggleLinkText[1]);
                     });
                 },
                 close: function () {
+                    toggleSummary.removeClass('open');
                     toggleDetail.slideUp(function () {
-                        $('.toggle-link-txt', toggleComponent).text(toggleLinkText[0]);
+                        $('.toggleLink', toggleComponent).text(toggleLinkText[0]);
                     });
                 }
             }
