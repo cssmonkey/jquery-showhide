@@ -1,4 +1,4 @@
-jquery-showhide
+jquery showhide
 ===============
 
 A simple jQuery show/hide plugin. Assumes your toggle HTML flows as follows:
