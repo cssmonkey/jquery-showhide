@@ -52,15 +52,23 @@
 
             var bindEvent = {
                 open: function () {
-                    toggleSummary.addClass('open');
+                    toggleComponent.trigger("onOpenStart");
+					
                     toggleDetail.slideDown(function () {
                         $('.toggleLink', toggleComponent).text(toggleLinkText[1]);
+						toggleSummary.addClass('open');
+						
+						toggleComponent.trigger("onOpenComplete");
                     });
                 },
                 close: function () {
-                    toggleSummary.removeClass('open');
+                    toggleComponent.trigger("onCloseStart");
+					
                     toggleDetail.slideUp(function () {
                         $('.toggleLink', toggleComponent).text(toggleLinkText[0]);
+						toggleSummary.removeClass('open');
+						
+						toggleComponent.trigger("onCloseComplete");
                     });
                 }
             }
