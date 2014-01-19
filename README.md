@@ -19,3 +19,4 @@ A simple jQuery show/hide plugin. Assumes your toggle HTML flows as follows:
 <li>Allow for nested show/hide panels</li>
 <li>Option to specify easing</li>
 </ul>
+<p><a href="http://www.sean-jones.co.uk/projects/jquery-showhide/" target="_blank">View the demo</a></p>
